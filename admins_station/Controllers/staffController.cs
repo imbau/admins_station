@@ -48,6 +48,27 @@ namespace admins_station.Controllers
             (typeof(admins_station.Models.staffContext)) as staffContext;
             return JsonConvert.SerializeObject(context.Instert(staffdata, connection, AESpassword));
         }
+        [HttpDelete("[controller]/{empolyee_no}", Name = "Deletestaff")]
+        public String deleteStaff(String empolyee_no)
+        {
+            staffContext context = HttpContext.RequestServices.GetService
+            (typeof(admins_station.Models.staffContext)) as staffContext;
+            return JsonConvert.SerializeObject(context.deleteStaff(empolyee_no, connection));
+        }
+        [HttpPut("[controller]/{staffId}", Name = "editstaff")]
+        public String editstaff(String staffId,String staffdata)
+        {
+            staffContext context = HttpContext.RequestServices.GetService
+            (typeof(admins_station.Models.staffContext)) as staffContext;
+            return JsonConvert.SerializeObject(context.editstaff(staffId, staffdata, connection));
+        }
+        [HttpGet("[controller]", Name = "Getallstaff")]
+        public String Getallstaff()
+        {
+            staffContext context = HttpContext.RequestServices.GetService
+            (typeof(admins_station.Models.staffContext)) as staffContext;
+            return JsonConvert.SerializeObject(context.Getallstaff(connection));
+        }
 
     }
 }
